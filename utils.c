@@ -6,8 +6,10 @@
 //sign extends a bitfield with given size
 /* You may find implementing this function helpful */
 int bitSigner(unsigned int field, unsigned int size) {
-  /* YOUR CODE HERE */
-  return 0;
+    /* YOUR CODE HERE */
+    signed int conSigno = field << (32 - size);
+    signed int final = conSigno >> (32 - size);
+    return final;
 }
 
 
