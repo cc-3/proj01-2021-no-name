@@ -24,8 +24,50 @@ void write_ecall(Instruction);
 
 void decode_instruction(Instruction instruction) {
   /* YOUR CODE HERE: COMPLETE THE SWITCH STATEMENTS */
-  switch(0) { // What do we switch on?
+  unsigned int opcode = instruction.opcode;
+  switch(opcode) { // What do we switch on?
     /* YOUR CODE HERE */
+
+    case 51:
+      write_rtype(instruction);
+    break;
+
+    case 19:
+      write_itype_except_load(instruction);
+    break;
+
+    case 3:
+      write_load(instruction);
+    break;
+
+    case 103:
+      write_jalr(instruction);
+    break;
+
+    case 115:
+      write_ecall(instruction);
+    break;
+
+    case 35:
+      write_store(instruction);
+    break;
+
+    case 99:
+      write_branch(instruction);
+    break;
+
+    case 55:
+      write_lui(instruction);
+    break;
+
+    case 111:
+      write_jal(instruction);
+    break;
+
+    case 0X17:
+      write_auipc(instruction);
+    break;
+
     default: // undefined opcode
       handle_invalid_instruction(instruction);
       break;
