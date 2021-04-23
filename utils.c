@@ -20,7 +20,6 @@ int get_branch_offset(Instruction instruction) {
   /* YOUR CODE HERE */
   int offset = 0;
   int offset2 = 0;
-  int offset3 = 0;
   int offset_final = 0;
 
   unsigned int digitos_imm7 = instruction.sbtype.imm7 << 5;
@@ -46,14 +45,10 @@ int get_branch_offset(Instruction instruction) {
 
 int get_jump_offset(Instruction instruction) {
   /* YOUR CODE HERE */
-  int offset = 0;
-  int offset2 = 0;
-  int offset3 = 0;
-  int offset_final = 0;
 
   unsigned int digitos_imm2 = instruction.ujtype.imm << 3;
   int digitos_imm2_2 = 0b100000000000 & digitos_imm2;
-  offset_final = digitos_imm2_2;
+  int offset_final = digitos_imm2_2;
 
   unsigned int digitos_imm1 = instruction.ujtype.imm << 12;
   int digitos_imm1_2 = 0b11111111000000000000 & digitos_imm1;
@@ -74,7 +69,13 @@ int get_jump_offset(Instruction instruction) {
 
 int get_store_offset(Instruction instruction) {
   /* YOUR CODE HERE */
-  return 0;
+  int final = 0b00000000000000000000000000000000;
+  int separadorImm7 = 0b111111100000 & (instruction.stype.imm7 << 5);
+  final = final | separadorImm7;
+  int separadorImm5 = 0b11111 & (instruction.stype.imm5);
+  final = final | separadorImm5;
+  final = bitSigner(final, 12); 
+  return final;
 }
 
 void handle_invalid_instruction(Instruction instruction) {
