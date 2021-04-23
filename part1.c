@@ -290,59 +290,49 @@ void write_branch(Instruction instruction)
 void write_auipc(Instruction instruction)
 {
   /* YOUR CODE HERE */
-  printf(AUIPC_FORMAT, instruction.utype.rd, instruction.utype.imm);
 }
 
 void write_lui(Instruction instruction)
 {
   /* YOUR CODE HERE */
-  printf(LUI_FORMAT, instruction.utype.rd, (sWord) instruction.utype.imm);
 }
 
 void write_jalr(Instruction instruction)
 {
   /* YOUR CODE HERE */
-  printf(JALR_FORMAT, instruction.itype.rd, instruction.itype.rs1, (sWord) bitSigner(instruction.itype.imm, 11));
 }
 
 void write_jal(Instruction instruction)
 {
   /* YOUR CODE HERE */
-  printf(JAL_FORMAT, instruction.ujtype.rd, get_jump_offset(instruction));
 }
 
 void write_ecall(Instruction instruction)
 {
   /* YOUR CODE HERE */
-  printf(ECALL_FORMAT);
 }
 
 void print_rtype(char *name, Instruction instruction)
 {
   /* YOUR CODE HERE */
-  printf(RTYPE_FORMAT, name, instruction.rtype.rd, instruction.rtype.rs1, instruction.rtype.rs2);
 }
 
 void print_itype_except_load(char *name, Instruction instruction, int imm)
 {
   /* YOUR CODE HERE */
-  printf(ITYPE_FORMAT, name, instruction.itype.rd, instruction.itype.rs1, (sWord) imm);
 }
 
 void print_load(char *name, Instruction instruction)
 {
   /* YOUR CODE HERE */
-  printf(MEM_FORMAT, name, instruction.itype.rd, (sWord) bitSigner(instruction.itype.imm, 12), instruction.itype.rs1);
 }
 
 void print_store(char *name, Instruction instruction)
 {
   /* YOUR CODE HERE */
-  printf(MEM_FORMAT, name, instruction.stype.rs2, get_store_offset(instruction), instruction.stype.rs1);
 }
 
 void print_branch(char *name, Instruction instruction)
 {
   /* YOUR CODE HERE */
-  printf(BRANCH_FORMAT, name, instruction.sbtype.rs1, instruction.sbtype.rs2, get_branch_offset(instruction));
 }
