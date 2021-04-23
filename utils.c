@@ -46,8 +46,29 @@ int get_branch_offset(Instruction instruction) {
 
 int get_jump_offset(Instruction instruction) {
   /* YOUR CODE HERE */
-  return 0;
+  int offset = 0;
+  int offset2 = 0;
+  int offset3 = 0;
+  int offset_final = 0;
 
+  unsigned int digitos_imm2 = instruction.ujtype.imm << 3;
+  int digitos_imm2_2 = 0b100000000000 & digitos_imm2;
+  offset_final = digitos_imm2_2;
+
+  unsigned int digitos_imm1 = instruction.ujtype.imm << 12;
+  int digitos_imm1_2 = 0b11111111000000000000 & digitos_imm1;
+  offset_final = offset_final | digitos_imm1_2;
+
+  unsigned int digitos_Imm4 = instruction.ujtype.imm << 2;
+  int digitos_Imm4_2 = 0b100000000000000000000 & digitos_Imm4;
+  offset_final = offset_final | digitos_Imm4_2;
+
+
+  unsigned int digitos_Imm3 = instruction.ujtype.imm >> 8;
+  int digitos_Imm3_2 = 0b11111111110 & digitos_Imm3;
+  offset_final = offset_final | digitos_Imm3_2;
+
+  return bitSigner(offset_final, 21);
 }
 
 
@@ -55,6 +76,7 @@ int get_store_offset(Instruction instruction) {
   /* YOUR CODE HERE */
   return 0;
 }
+
 void handle_invalid_instruction(Instruction instruction) {
   printf("Invalid Instruction: 0x%08x\n", instruction.bits);
 }
